@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     // See: HomePageModule
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '',
@@ -15,12 +15,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     // En caso de cualquier error en la ruta se redirecciona al Not Found
     path: '**',
-    loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
+    loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
 ];
 

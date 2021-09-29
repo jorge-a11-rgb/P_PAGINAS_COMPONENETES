@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { CertificacionesComponent } from '../certificaciones/certificaciones.component';
+import { CertificacionesComponent } from '../components/certificaciones/certificaciones.component';
 
 
 @NgModule({
