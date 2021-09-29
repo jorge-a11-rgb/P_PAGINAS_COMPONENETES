@@ -1,0 +1,49 @@
+<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+  <ion-title class="ion-padding-top ion-text-center">
+    <ion-label>
+      <h1>Bienvenido</h1>
+      <!-- {{interpolacion}} 
+          Permite mostrar los datos desde el script a la visual
+          verificar el data en el home.page.ts
+        -->
+      <p *ngIf="usuario">Usuario: {{usuario}}</p>
+    </ion-label>
+  </ion-title>
+  <b class="ion-text-center">
+    <h4>Experiencia laboral</h4>
+  </b>
+  <ion-item class="ion-padding-horizontal">
+    <ion-label position="stacked">Empresa</ion-label>
+    <ion-input type="text" [(ngModel)]="data.empresa"></ion-input>
+  </ion-item>
+  <ion-item class="ion-padding-horizontal">
+    <ion-label position="stacked" class="ion-padding-bottom">Año inicio</ion-label>
+    <ion-input type="date" [(ngModel)]="data.annoIni"></ion-input>
+  </ion-item>
+  
+
+  <ion-item class="ion-padding-horizontal">
+    <ion-label position="stacked" class="ion-padding-bottom">Actualmente trabaja ahi?</ion-label>
+    <ion-select placeholder="Seleccione respuesta" [(ngModel)]="data.education">
+      <ion-select-option *ngFor="let niv of niveles" [value]="niv.id">{{niv.nivel}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item class="ion-padding-horizontal">
+    <ion-label position="stacked">Cargo</ion-label>
+    <ion-input type="text" [(ngModel)]="data.cargo"></ion-input>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-button shape="block" (click)="limpiar()">
+          Limpiar
+        </ion-button>
+      </ion-col>
+      <ion-col col-6>
+        <ion-button shape="block" (click)="mostrar()">
+          Mostrar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
