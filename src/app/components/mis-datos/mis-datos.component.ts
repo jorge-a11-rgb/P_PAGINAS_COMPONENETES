@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { DatosBacicos } from 'src/app/model/DatosBacicos';
 import { Educacion } from 'src/app/model/Educacion';
@@ -6,13 +6,14 @@ import { Usuario } from 'src/app/model/Usuario';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
+import { AnimationController } from '@ionic/angular'
 @Component({
   selector: 'app-mis-datos',
   templateUrl: './mis-datos.component.html',
   styleUrls: ['./mis-datos.component.scss'],
 })
-export class MisDatosComponent implements OnInit {
-
+export class MisDatosComponent implements OnInit, AfterViewInit  {
+  @ViewChild('tit', { read: ElementRef, static: true}) tit: ElementRef; 
 
   public usuario: Usuario;
   public datosBasicos: DatosBacicos = new DatosBacicos();
@@ -27,9 +28,10 @@ export class MisDatosComponent implements OnInit {
 
 
   constructor(
-    private activeroute: ActivatedRoute
-  , private router: Router
-  , private alertController: AlertController) {
+    private animationController: AnimationController
+    ,private activeroute: ActivatedRoute
+    , private router: Router
+    , private alertController: AlertController) {
 
 // Se llama a la ruta activa y se obtienen sus parámetros mediante una subscripcion
 this.activeroute.queryParams.subscribe(params => {       // Utilizamos expresión lambda
@@ -47,6 +49,19 @@ this.activeroute.queryParams.subscribe(params => {       // Utilizamos expresió
   
   }
 });
+}
+public ngAfterViewInit(): void {
+  let animation = this.animationController.create()
+    .addElement(this.tit.nativeElement)
+
+    .duration(1500)
+    .iterations(Infinity)
+
+    .fromTo('transform', 'translate(0px)', 'translate(100px)')
+
+    .fromTo('opacity', 1, 0.2);
+
+  animation.play();
 }
 
 public ngOnInit() {

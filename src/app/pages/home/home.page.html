@@ -6,6 +6,10 @@
       SkeletonAPP
     </ion-title>
   </ion-toolbar>
+  <div class="ion-padding-top ion-text-center">
+    <ion-button [routerLink]="['/login']" id="volver">Volver</ion-button>
+  </div>
+
   <ion-toolbar>
     <ion-segment value="perfil" (ionChange)="segmentChanged($event)">
       <ion-segment-button  value="perfil">

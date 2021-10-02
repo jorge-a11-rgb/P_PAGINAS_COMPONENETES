@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AnimationController } from '@ionic/angular'
+import { AfterViewInit } from '@angular/core';
+
+import { createAnimation } from '@ionic/angular';
 @Component({
   selector: 'app-certificaciones',
   templateUrl: './certificaciones.component.html',
   styleUrls: ['./certificaciones.component.scss'],
 })
-export class CertificacionesComponent implements OnInit {
+export class CertificacionesComponent implements OnInit, AfterViewInit 
+{
 
+  @ViewChild('t', { read: ElementRef, static: true}) t: ElementRef;
   ngOnInit() {}
   usuario:String;
   respuesta:any[]=[
@@ -22,10 +28,24 @@ export class CertificacionesComponent implements OnInit {
     fechaVencimiento:""
   };
   constructor(
-    private activeroute: ActivatedRoute
+    private animationController: AnimationController
+    ,private activeroute: ActivatedRoute
     , private router: Router
     , private alertController: AlertController) {
 
+  }
+  public ngAfterViewInit(): void {
+    let animation = this.animationController.create()
+      .addElement(this.t.nativeElement)
+
+      .duration(1500)
+      .iterations(Infinity)
+
+      .fromTo('transform', 'translate(0px)', 'translate(100px)')
+
+      .fromTo('opacity', 1, 0.2);
+
+    animation.play();
   }
   /**
    * Metodo limpíar recorre un objeto y se define el 

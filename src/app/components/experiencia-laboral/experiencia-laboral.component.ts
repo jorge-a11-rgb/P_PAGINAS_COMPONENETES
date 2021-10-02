@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { DatosExperienciaLaboral } from 'src/app/model/DatosExperienciaLaboral';
 import { RespExp } from 'src/app/model/RespExp';
 import { Usuario } from 'src/app/model/Usuario';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { AnimationController } from '@ionic/angular'
 @Component({
   selector: 'app-experiencia-laboral',
   templateUrl: './experiencia-laboral.component.html',
   styleUrls: ['./experiencia-laboral.component.scss'],
 })
-export class ExperienciaLaboralComponent implements OnInit {
+export class ExperienciaLaboralComponent implements OnInit, AfterViewInit 
+{
+
+  @ViewChild('ti', { read: ElementRef, static: true}) t: ElementRef; 
 
  
   public usuario: Usuario;
@@ -21,10 +25,10 @@ export class ExperienciaLaboralComponent implements OnInit {
   ];
 
 
-  constructor(
-    private activeroute: ActivatedRoute
-  , private router: Router
-  , private alertController: AlertController) {
+  constructor(private animationController: AnimationController
+    ,private activeroute: ActivatedRoute
+    , private router: Router
+    , private alertController: AlertController) {
 
 // Se llama a la ruta activa y se obtienen sus parámetros mediante una subscripcion
 this.activeroute.queryParams.subscribe(params => {       // Utilizamos expresión lambda
@@ -43,7 +47,19 @@ this.activeroute.queryParams.subscribe(params => {       // Utilizamos expresió
   }
 });
 }
+public ngAfterViewInit(): void {
+  let animation = this.animationController.create()
+    .addElement(this.t.nativeElement)
 
+    .duration(1500)
+    .iterations(Infinity)
+
+    .fromTo('transform', 'translate(0px)', 'translate(100px)')
+
+    .fromTo('opacity', 1, 0.2);
+
+  animation.play();
+}
 public ngOnInit() {
 this.datosExperienciaLaboral.empresa = '';
 this.datosExperienciaLaboral.annoInicio = 0;
