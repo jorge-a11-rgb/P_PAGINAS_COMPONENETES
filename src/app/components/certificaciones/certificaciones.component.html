@@ -1,3 +1,4 @@
+<!-- Comienza el Content -->
 <ion-content [fullscreen]="true" class="ion-padding-horizontal">
   <ion-title class="ion-padding-top ion-text-center">
     <ion-label>
@@ -10,23 +11,25 @@
     </ion-label>
   </ion-title>
   <b class="ion-text-center">
-    <h4>Certificado</h4>
+    <h4>Certificacion</h4>
   </b>
   <ion-item class="ion-padding-horizontal">
     <ion-label position="stacked">Nombre certificado</ion-label>
-    <ion-input type="text" [(ngModel)]="data.empresa"></ion-input>
+    <ion-input type="text" [(ngModel)]="data.certificado"></ion-input>
   </ion-item>
   <ion-item class="ion-padding-horizontal">
-    <ion-label position="stacked" class="ion-padding-bottom">Fecha de optencion</ion-label>
-    <ion-input type="date" [(ngModel)]="data.annoIni"></ion-input>
+    <ion-label position="stacked">Fecha obtencion</ion-label>
+    <ion-input type="date" [(ngModel)]="data.fechaObtencion"></ion-input>
   </ion-item>
-  
-
   <ion-item class="ion-padding-horizontal">
-    <ion-label position="stacked" class="ion-padding-bottom">El certifcado vencio?</ion-label>
-    <ion-select placeholder="Seleccione respuesta" [(ngModel)]="data.pregunta">
-      <ion-select-option *ngFor="let niv of niveles" [value]="niv.id">{{niv.nivel}}</ion-select-option>
+    <ion-label position="stacked" class="ion-padding-bottom">Vencio el certificado?</ion-label>
+    <ion-select placeholder="Seleccione nivel" [(ngModel)]="data.resp">
+      <ion-select-option *ngFor="let res of respuesta" [value]="res.id">{{res.r}}</ion-select-option>
     </ion-select>
+  </ion-item>
+  <ion-item class="ion-padding-horizontal">
+    <ion-label position="stacked" class="ion-padding-bottom">Fecha de vencimiento</ion-label>
+    <ion-input type="date" [(ngModel)]="data.fechaVencimiento"></ion-input>
   </ion-item>
   <ion-grid>
     <ion-row>
@@ -42,5 +45,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
+<!-- Termina el Content -->

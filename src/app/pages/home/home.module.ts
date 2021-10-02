@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { CertificacionesComponent } from '../components/certificaciones/certificaciones.component';
+import { MisDatosComponent } from 'src/app/components/mis-datos/mis-datos.component';
+import { ExperienciaLaboralComponent } from 'src/app/components/experiencia-laboral/experiencia-laboral.component';
+import { CertificacionesComponent } from 'src/app/components/certificaciones/certificaciones.component';
 
 
 @NgModule({
@@ -17,6 +19,10 @@ import { CertificacionesComponent } from '../components/certificaciones/certific
     HomePageRoutingModule
   ],
   declarations: [HomePage],
-  entryComponents:[]
+  entryComponents:[
+    MisDatosComponent,
+    ExperienciaLaboralComponent,
+    CertificacionesComponent
+  ]
 })
 export class HomePageModule {}

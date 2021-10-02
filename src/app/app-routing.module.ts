@@ -4,6 +4,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 // Se definen las rutas a nivel de APP
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
     // See: HomePageModule
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)

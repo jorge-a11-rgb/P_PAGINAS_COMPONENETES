@@ -3,7 +3,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { CertificacionesComponent } from './certificaciones.component';
 
-
 describe('CertificacionesComponent', () => {
   let component: CertificacionesComponent;
   let fixture: ComponentFixture<CertificacionesComponent>;
